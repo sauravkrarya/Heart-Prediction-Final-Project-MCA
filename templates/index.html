@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Disease Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+<section>
+  <div class="container">
+    <h1 id="title">Heart Disease Predictor Using Machine Learning</h1>
+
+    <form id="prediction-form" action="{{ url_for('predict') }}" method="POST" onsubmit="savedetails()">
+      <div class="inputwrap col">
+        <label for="name" class="bold">Name</label>
+        <input class="mt8" type="text" name="name" id="name" placeholder="Enter your Name" required>
+      </div>
+
+      <div class="inputwrap col">
+        <label for="email" class="bold">Email</label>
+        <input class="mt8" type="email" name="email" id="email" placeholder="Enter your Email" required>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Age</label>
+        <input type="number" name="age" min="29" max="77" required placeholder="Enter Age" />
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Sex</label>
+        <select name="sex" id="sex">
+          <option value="0">Female</option>
+          <option value="1">Male</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Chest Pain Type</label>
+        <select name="cp">
+          <option value="0">Typical Angina</option>
+          <option value="1">Atypical Angina</option>
+          <option value="2">Non-Anginal</option>
+          <option value="3">Asymptomatic</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Resting Blood Pressure</label>
+        <input type="number" name="trestbps" min="94" max="200" placeholder="Resting BP">
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Cholesterol</label>
+        <input type="number" name="chol" min="126" max="564" placeholder="Cholesterol">
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Fasting Blood Sugar</label>
+        <select name="fbs">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Resting ECG</label>
+        <select name="restecg">
+          <option value="0">Normal</option>
+          <option value="1">ST-T Abnormality</option>
+          <option value="2">LV Hypertrophy</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Max Heart Rate</label>
+        <input type="number" name="thalach" min="71" max="202" placeholder="Max Heart Rate">
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Exercise Induced Angina</label>
+        <select name="exang">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Old Peak</label>
+        <input type="number" name="oldpeak" step="0.1" min="0" max="6.2" placeholder="Old Peak">
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Slope of ST Segment</label>
+        <select name="slope">
+          <option value="0">Upsloping</option>
+          <option value="1">Flat</option>
+          <option value="2">Downsloping</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Number of Major Vessels</label>
+        <select name="ca">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+
+      <div class="inputwrap col">
+        <label class="bold">Thal Type</label>
+        <select name="thal">
+          <option value="0">Normal</option>
+          <option value="1">Fixed Defect</option>
+          <option value="2">Reversible Defect</option>
+        </select>
+      </div>
+
+      <button type="submit" id="submit">Predict</button>
+    </form>
+  </div>
+</section>
+
+<script>
+function savedetails() {
+  console.log("Saving Details...");
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
+}
+</script>
+</body>
+</html>

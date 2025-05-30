@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='result.css') }}"
+    />
+    <title>Heart Disease Predictor</title>
+    <script>
+      function printDiv() {
+        window.print();
+      }
+
+      window.onload = function () {
+        const name = localStorage.getItem("name") || "";
+        const email = localStorage.getItem("email") || "";
+        document.getElementById("name").textContent = name;
+        document.getElementById("email").textContent = email;
+
+        // Risk badge color logic
+        const riskPercent = parseFloat("{{ result[3] }}");
+        const riskTag = document.getElementById("riskTag");
+        if (riskPercent >= 70) {
+          riskTag.style.color = "red";
+          riskTag.style.fontWeight = "bold";
+        } else if (riskPercent >= 40) {
+          riskTag.style.color = "orange";
+          riskTag.style.fontWeight = "bold";
+        } else {
+          riskTag.style.color = "green";
+          riskTag.style.fontWeight = "bold";
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="details">
+        <h2>{{ result[2][0] }}</h2>
+        <p>{{ result[2][1] }}</p>
+        <hr />
+      </div>
+
+      <h3 id="name"></h3>
+      <h3 id="email"></h3>
+      <hr />
+
+      <h3>Details Entered by You:</h3><br />
+      <table border="1">
+        {% for key, value in result[0].items() %}
+        <tr>
+          <th>{{ key }}</th>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <hr />
+
+      <h3>Overall Risk Assessment:</h3>
+      <p id="riskTag">{{ result[3] }}% chance that you have heart disease</p>
+
+      <h3>Detailed Model Predictions:</h3><br />
+      <table border="1">
+        {% for key, value in result[1].items() %}
+        <tr>
+          <th>{{ key }}</th>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <input
+        id="printButton"
+        type="button"
+        onclick="printDiv()"
+        value="Click To Generate Report"
+      />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Red Rose", cursive;
+}
+
+.card {
+  width: 80%;
+  max-width: 600px; /* Added max-width for better responsiveness */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px;
+  border-radius: 10px;
+  border: 3px solid black; /* Shortened border style */
+  background: white;
+  overflow-y: auto; /* Shows scrollbar only if content overflows */
+  max-height: 90vh; /* Prevents card from overflowing screen */
+}
+
+.card img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.card .details {
+  margin: 10px;
+}
+
+.card .details h2 {
+  font-weight: 600;
+}
+
+.card .details p {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+#printButton {
+  border-radius: 16px;
+  width: 200px;
+  border: none;
+  height: 40px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#printButton:hover {
+  background: #555;
+}
